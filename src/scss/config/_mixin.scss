@@ -1,0 +1,31 @@
+@import "./variables";
+
+@function color($key) {
+  @if map-has-key($color, $key) {
+    @return map-get($color, $key);
+  }
+
+  @warn "Unknown `#{$key}` in $colors!";
+  @return null;
+}
+
+@function breakpoints($key) {
+  @if map-has-key($breakpoints, $key) {
+    @return map-get($breakpoints, $key);
+  }
+
+  @warn "Unknown `#{$key}` in $breakpoints!";
+  @return null;
+}
+
+@mixin mobile {
+  @media (min-width: breakpoints(mobile)) and (max-width: breakpoints(tablet) - 1px) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (min-width: breakpoints(tablet)) and (max-width: breakpoints(desktop) - 1px) {
+    @content;
+  }
+}

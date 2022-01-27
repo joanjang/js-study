@@ -1,0 +1,29 @@
+@import "normalize.css";
+
+body {
+  background-color: m.color(blue);
+  color: white;
+  font-family: "Noto Sans KR", sans-serif;
+  line-height: 1.2;
+  letter-spacing: 0.05em;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+li {
+  list-style: none;
+}
+header {
+  text-align: center;
+  font-size: 1.3rem;
+  margin-bottom: 2.4rem;
+}
