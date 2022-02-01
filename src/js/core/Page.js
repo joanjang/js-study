@@ -1,26 +1,24 @@
-class Page {
-  constructor(name, title) {
+export default class Page {
+  constructor(name, title = name) {
     this.name = name;
     this.title = title;
-    this.body = document.querySelector("body");
 
-    this.rendering();
+    this.render();
   }
 
-  rendering() {
-    this.body.innerHTML = this.makeTemplate();
-    const main = document.querySelector("main");
-    main.innerHTML = this.subRendering();
+  render() {
+    const $wrapper = document.querySelector(".wrapper"),
+      $header = $wrapper.querySelector(".header-title"),
+      $main = $wrapper.querySelector("main");
+
+    $header.innerText = this.title;
+    $wrapper.classList.add(`${this.name}-wrapper`);
+    $main.classList.add(`${this.name}-container`);
+
+    $main.innerHTML = this.template();
   }
 
-  subRendering() {}
-
-  makeTemplate() {
-    return `<div class="wrapper ${this.name}-wrapper">
-    <header><h1 class="header-title">${this.title}</h1></header>
-    <main class="${this.name}-container"></main>
-    </div>`;
+  template() {
+    return "";
   }
 }
-
-export default Page;
