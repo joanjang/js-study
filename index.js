@@ -10,16 +10,6 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/js/Router.js":
-/*!**************************!*\
-  !*** ./src/js/Router.js ***!
-  \**************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ Router)\n/* harmony export */ });\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nfunction _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }\n\nfunction _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, \"prototype\", { writable: false }); return Constructor; }\n\nvar Router = /*#__PURE__*/function () {\n  function Router(ROUTES) {\n    _classCallCheck(this, Router);\n\n    this.routes = ROUTES;\n    this.initialRoute();\n  }\n\n  _createClass(Router, [{\n    key: \"initialRoute\",\n    value: function initialRoute() {\n      var _this = this;\n\n      this.router(this.routes[\"/\"], this.routes);\n      window.addEventListener(\"popstate\", function () {\n        _this.router(_this.routes[\"/\"], _this.routes);\n      });\n    }\n  }, {\n    key: \"goToPage\",\n    value: function goToPage(pathname, _Router) {\n      var isProduct = location.port === \"\";\n      history.pushState({}, \"\", \"\".concat(isProduct ? \"/js-study/\" : \"/\").concat(pathname));\n\n      _Router.router(_Router.routes[\"/\".concat(pathname)]);\n    }\n  }, {\n    key: \"router\",\n    value: function router(Page, routes) {\n      routes ? new Page(routes, this) : new Page();\n    }\n  }]);\n\n  return Router;\n}();\n\n\n\n//# sourceURL=webpack://js-study/./src/js/Router.js?");
-
-/***/ }),
-
 /***/ "./src/js/component/Menus.js":
 /*!***********************************!*\
   !*** ./src/js/component/Menus.js ***!
@@ -46,7 +36,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \*****************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ Page)\n/* harmony export */ });\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nfunction _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }\n\nfunction _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, \"prototype\", { writable: false }); return Constructor; }\n\nvar Page = /*#__PURE__*/function () {\n  function Page(name) {\n    var title = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : name;\n\n    _classCallCheck(this, Page);\n\n    this.name = name;\n    this.title = title;\n    this.render();\n  }\n\n  _createClass(Page, [{\n    key: \"render\",\n    value: function render() {\n      var $wrapper = document.querySelector(\".wrapper\"),\n          $header = $wrapper.querySelector(\".header-title\"),\n          $main = $wrapper.querySelector(\"main\");\n      $header.innerText = this.title;\n      $wrapper.classList.add(\"\".concat(this.name, \"-wrapper\"));\n      $main.classList.add(\"\".concat(this.name, \"-container\"));\n      $main.innerHTML = this.template();\n    }\n  }, {\n    key: \"template\",\n    value: function template() {\n      return \"\";\n    }\n  }]);\n\n  return Page;\n}();\n\n\n\n//# sourceURL=webpack://js-study/./src/js/core/Page.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ Page)\n/* harmony export */ });\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nfunction _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }\n\nfunction _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, \"prototype\", { writable: false }); return Constructor; }\n\nvar Page = /*#__PURE__*/function () {\n  function Page(name) {\n    var title = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : name;\n\n    _classCallCheck(this, Page);\n\n    this.name = name;\n    this.title = title;\n    this.render();\n  }\n\n  _createClass(Page, [{\n    key: \"render\",\n    value: function render() {\n      var $wrapper = document.querySelector(\".wrapper\");\n      var $header = $wrapper.querySelector(\".header-title\");\n      var $main = $wrapper.querySelector(\"main\"); // Page에 따른 classList, Title 추가 및 변경\n\n      var lastClass = $wrapper.classList[$wrapper.classList.length - 1];\n      if (lastClass.includes(\"-\")) $wrapper.classList.replace(lastClass, \"\".concat(this.name, \"-wrapper\"));else $wrapper.classList.add(\"\".concat(this.name, \"-wrapper\"));\n      $header.innerText = this.title;\n      $main.classList = \"\".concat(this.name, \"-container\");\n      $main.innerHTML = this.template();\n    }\n  }, {\n    key: \"template\",\n    value: function template() {\n      return \"\";\n    }\n  }]);\n\n  return Page;\n}();\n\n\n\n//# sourceURL=webpack://js-study/./src/js/core/Page.js?");
 
 /***/ }),
 
@@ -56,7 +46,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \*************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _scss_index_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../scss/index.scss */ \"./src/scss/index.scss\");\n/* harmony import */ var _Router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Router */ \"./src/js/Router.js\");\n/* harmony import */ var _routes__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./routes */ \"./src/js/routes.js\");\n\n\n\nwindow.addEventListener(\"load\", function () {\n  new _Router__WEBPACK_IMPORTED_MODULE_1__[\"default\"](_routes__WEBPACK_IMPORTED_MODULE_2__[\"default\"]);\n});\n\n//# sourceURL=webpack://js-study/./src/js/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _scss_index_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../scss/index.scss */ \"./src/scss/index.scss\");\n/* harmony import */ var _router_Router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./router/Router */ \"./src/js/router/Router.js\");\n/* harmony import */ var _utility__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./utility */ \"./src/js/utility.js\");\n\n\n\nwindow.addEventListener(\"load\", function () {\n  var router = new _router_Router__WEBPACK_IMPORTED_MODULE_1__[\"default\"]();\n  var _location = location,\n      pathname = _location.pathname;\n  pathname = pathname.replace(_utility__WEBPACK_IMPORTED_MODULE_2__.BASE_SRC, \"\");\n  if (pathname === _utility__WEBPACK_IMPORTED_MODULE_2__.BASE_SRC || pathname.includes(\"index.html\")) router.initialRoute();else router.goToPage(pathname, router);\n});\n\n//# sourceURL=webpack://js-study/./src/js/index.js?");
 
 /***/ }),
 
@@ -80,13 +70,33 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 
 /***/ }),
 
-/***/ "./src/js/routes.js":
-/*!**************************!*\
-  !*** ./src/js/routes.js ***!
-  \**************************/
+/***/ "./src/js/router/Router.js":
+/*!*********************************!*\
+  !*** ./src/js/router/Router.js ***!
+  \*********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _page_Home__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./page/Home */ \"./src/js/page/Home.js\");\n/* harmony import */ var _page_Generator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./page/Generator */ \"./src/js/page/Generator.js\");\n\n\nvar routes = {\n  \"/\": _page_Home__WEBPACK_IMPORTED_MODULE_0__[\"default\"],\n  \"/generator\": _page_Generator__WEBPACK_IMPORTED_MODULE_1__[\"default\"]\n};\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (routes);\n\n//# sourceURL=webpack://js-study/./src/js/routes.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ Router)\n/* harmony export */ });\n/* harmony import */ var _routes__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./routes */ \"./src/js/router/routes.js\");\n/* harmony import */ var _utility__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utility */ \"./src/js/utility.js\");\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nfunction _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }\n\nfunction _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, \"prototype\", { writable: false }); return Constructor; }\n\n\n\n\nvar Router = /*#__PURE__*/function () {\n  function Router() {\n    _classCallCheck(this, Router);\n\n    this.routes = _routes__WEBPACK_IMPORTED_MODULE_0__[\"default\"];\n  }\n\n  _createClass(Router, [{\n    key: \"initialRoute\",\n    value: function initialRoute() {\n      var _this = this;\n\n      this.router(this.routes[\"/\"], this.routes);\n      window.addEventListener(\"popstate\", function () {\n        _this.router(_this.routes[\"/\"], _this.routes);\n      });\n    }\n  }, {\n    key: \"goToPage\",\n    value: function goToPage(pathname, _Router) {\n      var _location = location,\n          origin = _location.origin;\n      if (!pathname.startsWith(\"/\")) pathname = \"/\" + pathname;\n      history.pushState({}, \"\", \"\".concat(origin).concat(_utility__WEBPACK_IMPORTED_MODULE_1__.isProdMode ? _utility__WEBPACK_IMPORTED_MODULE_1__.BASE_SRC : \"\").concat(pathname));\n\n      _Router.router(_Router.routes[\"\".concat(pathname)]);\n    }\n  }, {\n    key: \"router\",\n    value: function router(Page, routes) {\n      routes ? new Page(routes, this) : new Page();\n    }\n  }]);\n\n  return Router;\n}();\n\n\n\n//# sourceURL=webpack://js-study/./src/js/router/Router.js?");
+
+/***/ }),
+
+/***/ "./src/js/router/routes.js":
+/*!*********************************!*\
+  !*** ./src/js/router/routes.js ***!
+  \*********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _page_Home__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../page/Home */ \"./src/js/page/Home.js\");\n/* harmony import */ var _page_Generator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../page/Generator */ \"./src/js/page/Generator.js\");\n\n\nvar routes = {\n  \"/\": _page_Home__WEBPACK_IMPORTED_MODULE_0__[\"default\"],\n  \"/generator\": _page_Generator__WEBPACK_IMPORTED_MODULE_1__[\"default\"]\n};\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (routes);\n\n//# sourceURL=webpack://js-study/./src/js/router/routes.js?");
+
+/***/ }),
+
+/***/ "./src/js/utility.js":
+/*!***************************!*\
+  !*** ./src/js/utility.js ***!
+  \***************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"BASE_SRC\": () => (/* binding */ BASE_SRC),\n/* harmony export */   \"isProdMode\": () => (/* binding */ isProdMode)\n/* harmony export */ });\nvar BASE_SRC = \"/js-study/\";\nvar isProdMode = location.origin.includes(\"github\");\n\n//# sourceURL=webpack://js-study/./src/js/utility.js?");
 
 /***/ }),
 
