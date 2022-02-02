@@ -1,17 +1,10 @@
-import "../../scss/index.scss";
 import Page from "../core/Page";
-import titleList from "../../../titleList";
+import Menus from "../component/Menus";
 
+const HOME = "home";
 export default class Home extends Page {
-  constructor() {
-    super("home", "Development Note");
-  }
-
-  subRendering() {
-    return `<ul>
-      ${titleList
-        .map((title) => `<li class="titleList" title=${title}>${title}</li>`)
-        .join("")}
-    </ul>`;
+  constructor(routes, Router) {
+    super(HOME, "development note");
+    new Menus(HOME, Object.values(routes).slice(1), Router);
   }
 }
