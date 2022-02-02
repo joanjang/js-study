@@ -395,7 +395,7 @@ header {
   padding: 0 1rem;
   overflow-y: scroll;
 }
-.home-container .titleList {
+.home-container .home-menu {
   background-color: white;
   color: black;
   font-weight: 200;
@@ -403,16 +403,16 @@ header {
   padding: 1.2rem 1.4rem;
   border-radius: 5px;
 }
-.home-container .titleList:not(:last-child) {
+.home-container .home-menu:not(:last-child) {
   margin-bottom: 1.2rem;
 }
-.home-container .titleList:first-letter {
+.home-container .home-menu:first-letter {
   text-transform: uppercase;
 }
-.home-container .titleList:hover {
+.home-container .home-menu:hover {
   color: #f37246;
 }
-.home-container .titleList:hover::after {
+.home-container .home-menu:hover::after {
   content: ">";
   font-size: inherit;
   margin-left: 0.5rem;
@@ -421,6 +421,7 @@ header {
 .header-title {
   display: contents;
   text-shadow: 3px 3px rgba(239, 190, 190, 0.5);
+  text-transform: capitalize;
 }
 .header-title::before {
   content: "#";
