@@ -5,6 +5,12 @@ const HOME = "home";
 export default class Home extends Page {
   constructor(routes, Router) {
     super(HOME, "development note");
-    new Menus(HOME, Object.values(routes).slice(1), Router);
+    new Menus(
+      HOME,
+      Object.values(routes)
+        .map(({ title }) => title)
+        .slice(1),
+      Router
+    );
   }
 }

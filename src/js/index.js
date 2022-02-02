@@ -1,3 +1,7 @@
-import Home from "./page/Home";
+import "../scss/index.scss";
 
-new Home();
+import Router from "./router/Router";
+
+window.addEventListener("load", () => {
+  new Router();
+});

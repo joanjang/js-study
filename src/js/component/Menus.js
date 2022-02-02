@@ -10,19 +10,25 @@ export default class Munus extends Component {
     this.className = `${this.target}-menu`;
     return `<ul>
       ${this.items
-        .map(
-          (item) =>
-            `<li class=${this.className} title=${item.name}>${item.name}</li>`
-        )
+        .map((item) => `<li class=${this.className} title=${item}>${item}</li>`)
         .join("")}
     </ul>`;
   }
 
   setEvent() {
     this.$target.querySelectorAll(`.${this.className}`).forEach((menu) => {
-      menu.addEventListener("click", ({ target: { innerText } }) => {
-        this.Router.goToPage(innerText.toLowerCase(), this.Router);
-      });
+      menu.addEventListener(
+        "click",
+        ({
+          target: {
+            attributes: {
+              title: { nodeValue },
+            },
+          },
+        }) => {
+          this.Router.goToPage(nodeValue, this.Router);
+        }
+      );
     });
   }
 }
