@@ -4,7 +4,6 @@ import { isProdMode, BASE_SRC } from "../utility";
 export default class Router {
   constructor() {
     this.routes = ROUTES;
-    this.initialRoute();
   }
 
   initialRoute() {
@@ -16,8 +15,14 @@ export default class Router {
   }
 
   goToPage(pathname, Router) {
+    const { origin } = location;
+
     if (!pathname.startsWith("/")) pathname = "/" + pathname;
-    history.pushState({}, "", `${isProdMode ? BASE_SRC : ""}${pathname}`);
+    history.pushState(
+      {},
+      "",
+      `${origin}${isProdMode ? BASE_SRC : ""}${pathname}`
+    );
     Router.router(Router.routes[pathname]);
   }
 

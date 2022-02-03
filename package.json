@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "Let's study javascript",
   "scripts": {
-    "dev": "webpack --mode=development -w",
-    "build": "webpack --mode=production",
-    "deploy": "gh-pages -d build",
+    "dev": "webpack --env development -w",
+    "build": "webpack --env production && cp dist/index.html dist/404.html",
+    "deploy": "npm run build && gh-pages -d dist",
     "pull": "git pull origin master"
   },
   "author": "",
