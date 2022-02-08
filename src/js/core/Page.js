@@ -1,24 +1,37 @@
 export default class Page {
-  constructor(name, title = name) {
-    this.name = name;
+  state;
+  constructor(pageName, title = pageName) {
+    this.pageName = pageName;
     this.title = title;
 
+    this.initialize();
     this.render();
   }
 
+  initialize() {}
+
   render() {
-    const $wrapper = document.querySelector(".wrapper"),
-      $header = $wrapper.querySelector(".header-title"),
-      $main = $wrapper.querySelector("main");
+    const $wrapper = document.querySelector(".wrapper");
+    const $header = $wrapper.querySelector(".header-title");
+    const $main = $wrapper.querySelector(".container");
 
+    // Page에 따른 classList, Title 추가 및 변경
     $header.innerText = this.title;
-    $wrapper.classList.add(`${this.name}-wrapper`);
-    $main.classList.add(`${this.name}-container`);
+    this.replaceClassName($wrapper, "wrapper");
+    this.replaceClassName($main, "container");
 
-    $main.innerHTML = this.template();
+    $main.innerHTML = "";
+    this.mounted();
   }
 
-  template() {
-    return "";
+  replaceClassName(target, className) {
+    const { classList } = target;
+    const lastClass = classList[classList.length - 1];
+
+    if (lastClass.includes("-"))
+      classList.replace(lastClass, `${this.pageName}-${className}`);
+    else classList.add(`${this.pageName}-${className}`);
   }
+
+  mounted() {}
 }

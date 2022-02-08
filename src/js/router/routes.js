@@ -1,5 +1,5 @@
-import Home from "../page/Home";
-import Generator from "../page/Generator";
+import Home from "../page/home/index";
+import Generator from "../page/generator/index";
 
 const routes = {
   "/": { title: "home", class: Home },
