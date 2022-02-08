@@ -1,7 +1,7 @@
 export default class Component {
-  constructor(target, items) {
+  constructor(target, props) {
     this.target = target;
-    this.items = items;
+    this.props = props;
     this.$target = document.querySelector(`.${target}-container`);
     this.render();
   }

@@ -1,33 +1,29 @@
-import ROUTES from "./routes";
+import routes from "./routes";
 import { isProdMode, BASE_SRC } from "../utility";
 
 export default class Router {
   constructor() {
-    this.routes = ROUTES;
+    this.routes = routes;
   }
 
   initialRoute() {
-    this.router(this.routes["/"], this.routes);
+    this.router(this.routes["/"]);
 
     window.addEventListener("popstate", () => {
-      this.router(this.routes["/"], this.routes);
+      this.router(this.routes["/"]);
     });
   }
 
-  goToPage(pathname, Router) {
+  goToPage(path, Router) {
     const { origin } = location;
 
-    if (!pathname.startsWith("/")) pathname = "/" + pathname;
-    history.pushState(
-      {},
-      "",
-      `${origin}${isProdMode ? BASE_SRC : ""}${pathname}`
-    );
-    Router.router(Router.routes[pathname]);
+    if (!path.startsWith("/")) path = "/" + path;
+    history.pushState({}, "", `${origin}${isProdMode ? BASE_SRC : ""}${path}`);
+    Router.router(Router.routes[path]);
   }
 
-  router(Page, routes) {
-    Page = Page.class;
-    routes ? new Page(routes, this) : new Page();
+  router(route) {
+    const { title, class: Page } = route;
+    return new Page(title, title === "home" ? this : undefined);
   }
 }
