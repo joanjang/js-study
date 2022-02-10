@@ -26,7 +26,16 @@ module.exports = ({ production }) => ({
         use: {
           loader: "babel-loader",
           options: {
-            presets: [["@babel/preset-env", { targets: "defaults" }]],
+            presets: [
+              [
+                "@babel/preset-env",
+                {
+                  targets: "> 2%, not dead",
+                  corejs: 3,
+                  useBuiltIns: "entry",
+                },
+              ],
+            ],
           },
         },
       },
