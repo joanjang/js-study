@@ -1,8 +1,11 @@
 @use "../config/mixin" as m;
 
+.home-wrapper {
+  width: 40rem;
+}
+
 .home-container {
   padding: 0 1rem;
-  overflow-y: scroll;
 
   .home-menu {
     background-color: white;
