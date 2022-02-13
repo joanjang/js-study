@@ -2,6 +2,7 @@
 
 @import "./config/reset";
 @import "./page/home";
+@import "./page/generator";
 
 .header-title {
   display: contents;
@@ -24,7 +25,6 @@
   bottom: 0;
   left: 0;
   margin: auto;
-  width: 40rem;
   height: fit-content;
   max-height: 90vh;
   display: flex;
@@ -33,6 +33,10 @@
   background-color: m.color(orange);
   border-radius: 15px;
   box-shadow: 10px 10px 1.2px rgb(255 255 255 / 95%);
+
+  .container {
+    overflow-y: scroll;
+  }
 
   > * {
     display: initial;

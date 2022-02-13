@@ -13,14 +13,14 @@ export default class Page {
   render() {
     const $wrapper = document.querySelector(".wrapper");
     const $header = $wrapper.querySelector(".header-title");
-    const $main = $wrapper.querySelector(".container");
+    this.$main = $wrapper.querySelector(".container");
 
     // Page에 따른 classList, Title 추가 및 변경
     $header.innerText = this.title;
     this.replaceClassName($wrapper, "wrapper");
-    this.replaceClassName($main, "container");
+    this.replaceClassName(this.$main, "container");
 
-    $main.innerHTML = "";
+    this.$main.innerHTML = "";
     this.mounted();
   }
 

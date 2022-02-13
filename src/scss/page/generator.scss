@@ -1,0 +1,43 @@
+@use "../config/mixin" as m;
+
+.generator-wrapper {
+  width: 60rem;
+}
+
+.generator-container {
+  height: fit-content;
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 3rem;
+  padding: 3rem 1.5rem;
+  text-align: center;
+
+  .item {
+    font-size: 5rem;
+  }
+
+  .see-more-button {
+    grid-column: 1 / -1;
+    font-size: 1.5rem;
+    margin-top: 2rem;
+
+    .fa-plus {
+      width: fit-content;
+      height: fit-content;
+      background-color: white;
+      padding: 0.6rem;
+      border-radius: 999px;
+      color: m.color(orange);
+      cursor: pointer;
+
+      &:hover,
+      &:active {
+        opacity: 0.7;
+      }
+    }
+
+    &.hide {
+      display: none;
+    }
+  }
+}
