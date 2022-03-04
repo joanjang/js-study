@@ -5,6 +5,7 @@ import Page from "../../core/Page";
 
 export default class Generator extends Page {
   initialize() {
+    this.SHOWING_STR = "안녕하세요저는장지은입니다😝";
     this.state = {};
   }
 
@@ -38,10 +39,12 @@ export default class Generator extends Page {
   }
 
   *moreItems() {
-    yield ["안", "녕", "하"];
-    yield ["세", "요", "저"];
-    yield ["는", "장", "지"];
-    yield ["은", "입", "니"];
-    return ["당"];
+    const items = this.SHOWING_STR.match(/.{1,3}/g);
+    let len = items.length;
+
+    for (const item of items) {
+      if (!--len) return [...item];
+      yield [...item];
+    }
   }
 }
