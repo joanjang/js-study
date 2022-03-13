@@ -6,7 +6,7 @@ require("dotenv").config();
 
 module.exports = ({ production }) => {
   const { API_LOCAL_HOST, API_SERVER_HOST, API_PORT } = process.env;
-  const API = `http://${
+  const API = `https://${
     production ? `${API_SERVER_HOST}` : `${API_LOCAL_HOST}`
   }:${API_PORT}`;
   return {
