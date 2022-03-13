@@ -5,7 +5,6 @@ import Page from "../../core/Page";
 
 export default class Generator extends Page {
   initialize() {
-    this.SHOWING_STR = "안녕하세요저는장지은입니다😝";
     this.state = {};
   }
 
@@ -15,18 +14,23 @@ export default class Generator extends Page {
     new PlusButton(this.pageName, { seeMoreItems: seeMoreItems.bind(this) });
   }
 
-  seeMoreItems(button) {
-    this.$button = document.querySelector(`.${button}`);
-
-    this.setState(this.moreItems.next());
-    this.template();
-    this.$main.scrollTo(0, this.$main.scrollHeight);
-
-    if (this.state.done) this.$button.classList.add("hide");
+  async seeMoreItems(button) {
+    try {
+      const data = () => this.moreItems.next();
+      this.$button = document.querySelector(`.${button}`);
+      this.setState(await data());
+      this.template();
+      this.$main.scrollTo(0, this.$main.scrollHeight);
+    } catch (e) {
+      alert(`[error] ${e}`);
+    } finally {
+      if (this.state.done) this.$button.classList.add("hide");
+    }
   }
 
   setState(newState) {
     this.state = { ...newState };
+    if (newState.value?.error) throw newState.value.message;
   }
 
   template() {
@@ -38,13 +42,23 @@ export default class Generator extends Page {
     });
   }
 
-  *moreItems() {
-    const items = this.SHOWING_STR.match(/.{1,3}/g);
-    let len = items.length;
-
-    for (const item of items) {
-      if (!--len) return [...item];
-      yield [...item];
+  async *moreItems() {
+    let index = 0;
+    while (1) {
+      try {
+        const response = await fetch(
+          `${process.env.API_URL}/generator/${++index}`,
+          {
+            method: "GET",
+            credentials: "include",
+          }
+        );
+        const { data, hasNextPage } = await response.json();
+        if (!hasNextPage) return [...data];
+        yield [...data];
+      } catch ({ message }) {
+        return { error: true, message };
+      }
     }
   }
 }
